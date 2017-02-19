@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>hues</title>
+
+    <style media="screen">
+      html {
+          box-sizing: border-box;
+          font-family: 'helvetica neue';
+          font-size: 20px;
+          font-weight: 200;
+      }
+
+      body {
+          margin: 0;
+      }
+
+      *,
+      *:before,
+      *:after {
+          box-sizing: inherit;
+      }
+
+      .ellipses {
+        position: fixed;
+        /*border: black dashed 1px;*/
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+
+      .ellipse {
+        position: absolute;
+        display: inline-block;
+        height: 350px;
+        width: 350px;
+        border-radius: 100%;
+      }
+
+      #epicenter {
+        width: 200px;
+        height: 200px;
+        background-color: rgba(0, 0, 255, 0);
+        border: none;
+      }
+
+      .n {
+        border: dashed red 2px;
+        background-color: hsla(0, 100%, 50%, 0.35);
+        transform: translate(-23%, -100%)
+      }
+
+      .ellipse.n.active {
+        animation: movesouth 8s ease-in forwards;
+      }
+
+      @keyframes movesouth {
+        100% {
+          transform: translate(-25%, -48%);
+        }
+      }
+
+      .e {
+        border: dashed blue 2px;
+        background-color: hsla(231, 100%, 50%, 0.42);
+        transform: translate(40%, 30%);
+      }
+
+      .ellipse.e.active {
+        animation: movewest 8s ease-in forwards;
+      }
+
+      @keyframes movewest {
+        100% {
+          transform: translate(10%, 8%);
+        }
+      }
+
+      .w {
+         border: dashed yellow 2px;
+         background-color: hsla(60, 100%, 50%, 0.35);
+         transform: translate(-83%, 30%);
+      }
+
+      .ellipse.w.active {
+        animation: moveeast 8s ease-in forwards;
+      }
+
+      @keyframes moveeast {
+        100% {
+          transform: translate(-60%, 8%);
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="ellipses">
+      <div class="ellipse n active"></div>
+      <div class="ellipse e active"></div>
+      <div class="ellipse" id="epicenter"></div>
+      <div class="ellipse w active"></div>
+    </div>
+
+    <script type="text/javascript">
+      const ellipses = document.querySelectorAll('.ellipse')
+      const epicenter = document.getElementById('epicenter')
+
+
+      function toggleActive() {
+        ellipses.forEach(ellipse => ellipse.classList.toggle('active'))
+        // animation-play-state:running on hover <:---- 
+      }
+
+      epicenter.addEventListener("mouseenter", toggleActive)
+
+    </script>
+  </body>
+</html>
