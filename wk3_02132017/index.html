@@ -42,6 +42,7 @@
         height: 350px;
         width: 350px;
         border-radius: 100%;
+        mix-blend-mode: screen;
       }
 
       #epicenter {
@@ -52,51 +53,43 @@
       }
 
       .n {
-        border: dashed red 2px;
-        background-color: hsla(0, 100%, 50%, 0.35);
-        transform: translate(-23%, -100%)
-      }
-
-      .ellipse.n.active {
-        animation: movesouth 8s ease-in forwards;
+        background-color: hsl(0, 100%, 50%);
+        transform: translate(-23%, -75%);
+        animation: movesouth 5s ease-out infinite alternate;
       }
 
       @keyframes movesouth {
-        100% {
-          transform: translate(-25%, -48%);
+        80%, 100% {
+          transform: translate(-23%, -46%);
         }
       }
 
       .e {
-        border: dashed blue 2px;
-        background-color: hsla(231, 100%, 50%, 0.42);
+        background-color: hsl(231, 100%, 50%);
         transform: translate(40%, 30%);
-      }
-
-      .ellipse.e.active {
-        animation: movewest 8s ease-in forwards;
+        animation: movewest 5s ease-out infinite alternate;
       }
 
       @keyframes movewest {
-        100% {
-          transform: translate(10%, 8%);
+        80%, 100% {
+          transform: translate(10%, 5%);
         }
       }
 
       .w {
-         border: dashed yellow 2px;
-         background-color: hsla(60, 100%, 50%, 0.35);
-         transform: translate(-83%, 30%);
-      }
-
-      .ellipse.w.active {
-        animation: moveeast 8s ease-in forwards;
+        background-color: hsl(109, 100%, 50%);
+        transform: translate(-83%, 30%);
+        animation: moveeast 5s ease-out infinite alternate;
       }
 
       @keyframes moveeast {
-        100% {
-          transform: translate(-60%, 8%);
+        80%, 100% {
+          transform: translate(-55%, 5%);
         }
+      }
+
+      .paused {
+        animation-play-state: paused;
       }
 
     </style>
@@ -114,15 +107,15 @@
     <script type="text/javascript">
       const ellipses = document.querySelectorAll('.ellipse')
       const epicenter = document.getElementById('epicenter')
-
+      const active = document.querySelectorAll('.active')
 
       function toggleActive() {
-        ellipses.forEach(ellipse => ellipse.classList.toggle('active'))
-        // animation-play-state:running on hover <:---- 
+        active.forEach(ellipse => {
+          ellipse.classList.toggle('paused')
+        })
       }
 
       epicenter.addEventListener("mouseenter", toggleActive)
-
     </script>
   </body>
 </html>
