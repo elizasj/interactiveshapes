@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>gradients</title>
+
+    <style media="screen">
+    :root {
+      --gradient_angle: 100deg;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shape-container {
+      width:500px;
+      height:500px;
+    }
+
+    .ellipse {
+      height: 100%;
+      border-radius: 100%;
+      background-size: 400% 400%;
+      background-image: linear-gradient(var(--gradient_angle), #dbdcd7 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #3d1635 84%, #1c1a27 100%);
+      animation: Wave 11s ease infinite;
+    }
+
+    @keyframes Wave {
+        0%{background-position:0% 44%}
+        50%{background-position:100% 57%}
+        100%{background-position:0% 44%}
+    }
+    </style>
+  </head>
+  <body>
+    <div class="shape-container">
+      <div class="ellipse"></div>
+    </div>
+
+  </body>
+
+  <script type="text/javascript">
+    const listen_mouse = document.querySelector('body')
+    const ellipse = document.querySelector('ellipse')
+
+    listen_mouse.addEventListener('mousemove', e => {
+      const w = document.body.clientWidth / 180
+      // const h = document.body.clientHeight / 100
+
+      const gradient_angle = parseInt(e.clientX / w, 10)
+      // const percentage = parseInt(e.clientY / h, 10)
+
+      document.documentElement.style.setProperty('--gradient_angle', gradient_angle  + "deg")
+    });
+
+
+  </script>
+</html>
