@@ -7,6 +7,10 @@
     <style media="screen">
     :root {
       --gradient_angle: 100deg;
+      --pos1: 0%;
+      --pos2: 44%;
+      --pos3: 100%;
+      --pos4: 57%;
     }
 
     html,
@@ -35,9 +39,9 @@
     }
 
     @keyframes Wave {
-        0%{background-position:0% 44%}
-        50%{background-position:100% 57%}
-        100%{background-position:0% 44%}
+        0%{background-position:var(--pos1) var(--pos2)}
+        50%{background-position:var(--pos3) var(--pos4)}
+        100%{background-position:var(--pos1) var(--pos2)}
     }
     </style>
   </head>
@@ -54,12 +58,26 @@
 
     listen_mouse.addEventListener('mousemove', e => {
       const w = document.body.clientWidth / 180
-      // const h = document.body.clientHeight / 100
+
+      const h1 = document.body.clientHeight / 10
+      const h2 = document.body.clientHeight / 44
+      const h3 = document.body.clientHeight / 100
+      const h4 = document.body.clientHeight / 57
+
 
       const gradient_angle = parseInt(e.clientX / w, 10)
-      // const percentage = parseInt(e.clientY / h, 10)
+
+      const pos1 = parseInt(e.clientY / h1, 10)
+      const pos2 = parseInt(e.clientY / h2, 10)
+      const pos3 = parseInt(e.clientY / h3, 10)
+      const pos4 = parseInt(e.clientY / h4, 10)
 
       document.documentElement.style.setProperty('--gradient_angle', gradient_angle  + "deg")
+      document.documentElement.style.setProperty('--pos1', pos1  + "%")
+      document.documentElement.style.setProperty('--pos2', pos2  + "%")
+      document.documentElement.style.setProperty('--pos3', pos3  + "%")
+      document.documentElement.style.setProperty('--pos4', pos4  + "%")
+
     });
 
 
