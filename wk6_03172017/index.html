@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>movement</title>
+</head>
+<style media="screen">
+     :root {
+        --spinner-seconds: 4s;
+        --thickness: 2px;
+        --rotation: 360deg
+    }
+
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        background-color: #830E58;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loader {
+        box-sizing: border-box;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        animation: rotation 6s infinite linear;
+    }
+
+    .circle {
+        box-sizing: border-box;
+        border-radius: 50%;
+    }
+
+    .border {
+        border: var(--thickness) solid #fff;
+    }
+
+    .spinner-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        animation: rotation var(--spinner-seconds) infinite linear;
+    }
+
+    .spinner {
+        position: absolute;
+        width: 75%;
+        height: 75%;
+        left: calc(3.66% - 1px);
+        top: calc(3.66% - 1px);
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes resize {
+        0%,
+        100% {
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            left: -2px;
+            top: -2px;
+        }
+        50% {
+            width: 50%;
+            height: 50%;
+            left: calc(7.32% - 1px);
+            top: calc(7.32% - 1px);
+        }
+    }
+</style>
+
+  <body>
+      <div class='loader circle border color1'>
+          <div class='spinner-container'>
+              <div class='spinner circle border color2'>
+                  <div class='spinner-container'>
+                      <div class='spinner circle border color3'>
+                          <div class='spinner-container'>
+                              <div class='spinner circle border color4'>
+                                  <div class='spinner-container'>
+                                      <div class='spinner circle border color5'>
+                                          <div class='spinner-container'>
+                                              <div class='spinner circle border color6'>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+
+  <script type="text/javascript">
+    const listen_mouse = document.querySelector('body')
+
+    listen_mouse.addEventListener('mousemove', e => {
+     const w = document.body.clientWidth / 276
+     const h = document.body.clientHeight / 10
+
+     console.log("width: " + document.body.clientWidth)
+
+     const spinnerseconds = parseInt(e.clientX / w, 10)
+     const thickness = parseInt(e.clientY / h, 10)
+    //  const rotation = parseInt(e.clientY / h, 10)
+
+     console.log("time: " + spinnerseconds)
+     console.log("thickness: " + thickness)
+    //  console.log(rotation)
+
+     document.documentElement.style.setProperty('--spinner-seconds', spinnerseconds  + "s")
+     document.documentElement.style.setProperty('--thickness', thickness  + "px")
+    //  document.documentElement.style.setProperty('--rotation', rotation  + "deg")
+
+    })
+  </script>
+</html>
